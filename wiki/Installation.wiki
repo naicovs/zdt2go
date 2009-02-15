@@ -8,8 +8,9 @@ For the installation of ZDT²go you have two choices:
   # If you want to become a power user and add your own vocabulary files from ZDT check *Power User*
 
 = Requirements =
-To use ZDT²go you need a mobile phone that can run Java applications, in detail it must support the configuration CLDC-1.1 and the profile MIDP-2.0 (most currently used mobile phones do that anyway).
-As I cannot test ZDT²go on every available device out there you eventually have to find it out yourself. If your phone runs the application just drop me a note and I will add it to the list of [working devices]. If your phone has problems just [http://code.google.com/p/zdt2go/issues/entry start an issue] on the [http://code.google.com/p/zdt2go/issues/list Issues tab] as there is the chance it can be made working for your device, too.
+To use ZDT²go you need a mobile phone that can run Java applications, in detail it must support the configuration CLDC-1.1 and the profile MIDP-2.0 (most currently used mobile phones do that anyway). Additionally, your phone needs to be able to display Chinese characters or you will be only able to learn Pinyin.
+
+As I cannot test ZDT²go on every available device out there you eventually have to find it out yourself. If your phone runs the application just drop me a note and I will add it to the list of [WorkingDevices working devices]. If your phone has problems just [http://code.google.com/p/zdt2go/issues/entry start an issue] on the [http://code.google.com/p/zdt2go/issues/list Issues tab] as there is the chance it can be made working for your device, too.
 
 = Details =
 
