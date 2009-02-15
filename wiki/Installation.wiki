@@ -42,4 +42,12 @@ If your mobile phone can access the internet and you have some webspace, upload 
 
 = Optionally =
 == Install Java ==
-On Windows you can download and install [http://java.com/en/download/ Sun's Java Java Runtime Environment]. On Linux ask your favorite package manager to get it for you. If double clicking does not run the generator, you can open a terminal, browse to the directory where your downloaded the file using *cd PATH/TO/DIRECTORY* and execute the application by entering *java -jar zdt2go_generator-X.X.X.jar* (of course you need to replace X.X.X by the proper version of the downloaded file).
+On Windows you can download and install [http://java.com/en/download/ Sun's Java Java Runtime Environment]. On Linux ask your favorite package manager to get it for you. If double clicking does not run the generator, you can open a terminal, browse to the directory where your downloaded the file using
+{{{
+cd PATH/TO/DIRECTORY
+}}}
+and execute the application by entering
+{{{
+java -jar zdt2go_generator-X.X.X.jar
+}}}
+(of course you need to replace X.X.X by the proper version of the downloaded file).
