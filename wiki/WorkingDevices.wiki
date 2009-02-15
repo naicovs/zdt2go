@@ -1,0 +1,10 @@
+#summary List of devices that have been tested to run ZDT²go.
+
+= List of devices =
+
+This table lists the devices that have been tested (by users) to run ZDT²go.
+
+|| *Brand* || *Model* || *Status* || *Remark* ||
+|| Sony Ericsson || K750c || works || ||
+
+Note: This list is based on (anonymous) users reports.
