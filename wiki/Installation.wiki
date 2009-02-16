@@ -3,6 +3,8 @@
 
 = Introduction =
 
+<font color="#ff0000">The release version 0.8.0 is for testing only.</font>
+
 For the installation of ZDT²go you have two choices:
   # If you just want to test its features, then continue with *Quick Start*
   # If you want to become a power user and add your own vocabulary files from ZDT check *Power User*
