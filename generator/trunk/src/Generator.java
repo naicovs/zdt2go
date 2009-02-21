@@ -91,7 +91,7 @@ public class Generator {
 	public Generator() {
 		vocabularyFiles = new Vector<String>();
 		outputDirectory = "";
-		extractResourcesIntoTempFile();
+		temporaryResourceFile = null;
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Generator {
 		}
 	}
 
-	private void sortArray(String[] strings) {
+	private static final void sortArray(String[] strings) {
 		Arrays.sort(strings, new Comparator<String>() {
 			public int compare(final String o1, final String o2) {
 				return o1.compareTo(o2);
@@ -149,52 +149,84 @@ public class Generator {
 
 	/**
 	 * Create the output midlet files.
+	 * @throws IOException 
 	 */
-	public void createJarAndJad() {
+	public void createJarAndJad() throws IOException {
 		String jarFileName = getJarFileName();
 		String jadFileName = getJadFileName();
-
-		createMidlet(jarFileName);
-		long fileSize = getFileSize(jarFileName);
-		createDescriptionFile(jadFileName, fileSize);
+		try {
+			extractResourcesIntoTempFile();
+			createMidlet(jarFileName);
+			long fileSize = getFileSize(jarFileName);
+			createDescriptionFile(jadFileName, fileSize);
+		} finally {
+			removeTemporaryResourceFile();
+		}
 	}
 
-	private void extractResourcesIntoTempFile() {
-		FileOutputStream out;
+	private void removeTemporaryResourceFile() {
+		if (temporaryResourceFile!=null) {
+			temporaryResourceFile.delete();
+			temporaryResourceFile = null;
+		}
+	}
+
+	private void extractResourcesIntoTempFile() throws IOException {
+		IOException exception = null;
+		FileOutputStream out = null;
+		// open input file
 		InputStream in = getClass().getResourceAsStream(RESOURCE_JAR_FILE);
+		if (in==null) {
+			throw new FileNotFoundException("Included file not found: "+RESOURCE_JAD_FILE);
+		}
 		try {
+			// create output file
 			temporaryResourceFile = File.createTempFile(PROJECT_NAME, null);
 			temporaryResourceFile.deleteOnExit();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		try {
+			// open output file
 			out = new FileOutputStream(temporaryResourceFile);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
-		try {
 			// Copy data form resources into new file
 			copyInputToOutput(in, out);
-			// Finish writing
-			in.close();
-			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
-			return;
+			exception = e;
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					if (exception != null) {
+						throw new IOException(
+								"Nested error while closing InputStream: " + e,
+								exception);
+					} else {
+						throw new IOException(
+								"Error while closing InputStream", e);
+					}
+				}
+			}
+			try {
+				in.close();
+			} catch (IOException e) {
+				if (exception != null) {
+					throw new IOException(
+							"Nested error while closing InputStream: " + e,
+							exception);
+				} else {
+					throw new IOException(
+							"Error while closing InputStream", e);
+				}
+			}
 		}
 
 	}
 
 	private long getFileSize(String fileName) {
-		File createdFile = new File(OUTPUT_JAR_FILE);
+		File createdFile = new File(fileName);
 		long fileSize = createdFile.length();
 		for (int i = 0; i < 10 && fileSize <= 0; i++) {
 			// try again after a short delay
 			try {
-				wait(500);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -203,10 +235,14 @@ public class Generator {
 		return fileSize;
 	}
 
-	private void createDescriptionFile(String outputFile, long fileSize) {
+	private void createDescriptionFile(String outputFile, long fileSize) throws IOException {
 		String size = "MIDlet-Jar-Size: " + fileSize;
+		FileOutputStream out = null;
+		IOException exception = null;
 		InputStream in = getClass().getResourceAsStream(RESOURCE_JAD_FILE);
-		FileOutputStream out;
+		if (in==null) {
+			throw new FileNotFoundException("Included file not found: "+RESOURCE_JAD_FILE);
+		}
 		try {
 			// Create new file
 			out = new FileOutputStream(outputFile);
@@ -214,13 +250,31 @@ public class Generator {
 			copyInputToOutput(in, out);
 			// Append line with size of midlet to new file
 			out.write(size.getBytes("UTF-8"));
-			// Finish writing
-			out.close();
-			in.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			exception = e;
+		} finally {
+			// Finish writing
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					if (exception != null) {
+						throw new IOException(
+								"Nested error while closing InputStream: " + e,
+								exception);
+					} else {
+						throw new IOException(
+								"Error while closing InputStream", e);
+					}
+				}
+			}
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -239,20 +293,36 @@ public class Generator {
 		}
 	}
 
-	private void createMidlet(String outputFileName) {
+	private void createMidlet(String outputFileName) throws IOException {
 		additionalIndexFileEntries = new Vector<String>();
+		ZipOutputStream out = null;
+		IOException ex = null;
 		try {
 			// Create the ZIP file
-			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
+			out = new ZipOutputStream(new FileOutputStream(
 					outputFileName));
 			// Add the vocabulary files
 			addCustomVocabularyFiles(out);
 			// Open the resources file
 			addResourceFiles(out);
-			// Complete the ZIP file
-			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			ex = e;
+		} finally {
+			// Complete the ZIP file
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException closeException) {
+					if (ex == null) {
+						throw closeException;
+					} else {
+						throw new IOException("Nested Error: "+closeException.getMessage(), ex);
+					}
+				}
+			}
+			if (ex != null) {
+				throw new IOException(ex);
+			}
 		}
 	}
 
