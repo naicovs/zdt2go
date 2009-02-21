@@ -40,48 +40,49 @@ import controller.Controller;
 
 /**
  * The SessionFlipped class represents the back side of a flash card. It shows
- * the missing data and asks the user to specify if he correctly
- * remembered them.
+ * the missing data and asks the user to specify if he correctly remembered
+ * them.
  * 
  * @author Achim Weimert
  * 
  */
 public class SessionFlipped extends Screen implements CommandListener,
 		ItemStateListener, ThreadCallback {
-	
+
 	private ChoiceGroup commandList;
 	private StringItem cardContentFlipped;
 	private Alert errorAlert;
 	private Alert waitAlert;
+	private Alert cancelAlert;
 
-	
 	public SessionFlipped(Controller controller) {
 		this(controller, false);
 	}
-	
+
 	public SessionFlipped(Controller controller, boolean showAll) {
 		super("Flipped", controller);
 
-		commandList = new ChoiceGroup("", Choice.MULTIPLE);
 		cardContentFlipped = new StringItem("", "");
-		
-		cardContentFlipped.setLayout(StringItem.LAYOUT_NEWLINE_BEFORE | StringItem.LAYOUT_LEFT | StringItem.LAYOUT_EXPAND);
-		commandList.append("I got it right", null);
-		commandList.append("Ask again", null);
-		commandList.append("Show all data", null);
-		commandList.setSelectedIndex(2, showAll);
-
+		cardContentFlipped.setLayout(StringItem.LAYOUT_CENTER
+				| StringItem.LAYOUT_EXPAND);
+		init(showAll);
 		append(cardContentFlipped);
+
+		commandList = new ChoiceGroup("", Choice.MULTIPLE);
+		commandList.append(">I got it right", null);
+		commandList.append(">Ask again", null);
+		commandList.append("Show all data", null);
+		commandList.append(">Cancel", null);
+		commandList.setSelectedIndex(2, showAll);
 		append(commandList);
+
 		setCommandListener(this);
 		setItemStateListener(this);
-
-		init(showAll);
 	}
-	
+
 	private void init(boolean showAll) {
-		setTitle("Flipped - " + data.getSessionCardNumber()
-				+ "/" + data.getSessionRemainingCardsCount());
+		setTitle("Flipped - " + data.getSessionCardNumber() + "/"
+				+ data.getSessionRemainingCardsCount());
 		StringBuffer showString = new StringBuffer();
 
 		for (int i = 0; i < 4; i++) {
@@ -92,41 +93,63 @@ public class SessionFlipped extends Screen implements CommandListener,
 			showString.append(attribute + "\n");
 		}
 
-		cardContentFlipped.setLabel(showString.toString());
+		cardContentFlipped.setText(showString.toString());
 	}
 
 	private boolean displayAttribute(int attributeId) {
-		if (attributeId==Attribute.TRADITIONAL && !data.getSettingsShowTraditionalCharacters()) {
+		if (attributeId == Attribute.TRADITIONAL
+				&& !data.getSettingsShowTraditionalCharacters()) {
 			return false;
 		}
-		if (attributeId==Attribute.SIMPLIFIED && !data.getSettingsShowSimplifiedCharacters()) {
+		if (attributeId == Attribute.SIMPLIFIED
+				&& !data.getSettingsShowSimplifiedCharacters()) {
 			return false;
 		}
 		return !data.isEntryAttributeShown(attributeId);
 	}
 
 	public void commandAction(Command command, Displayable displayable) {
-		if (displayable==errorAlert) {
+		if (displayable == errorAlert) {
 			showSessionFinishedScreen();
-		} else if (displayable==waitAlert) {
+		} else if (displayable == waitAlert) {
 			// do nothing as operation cannot be canceled
+		} else if (displayable == cancelAlert) {
+			if (command == yesCommand) {
+				controller.lastScreen();
+			} else if (command == noCommand) {
+				controller.changeScreen(new SessionFlipped(controller, false));
+			}
 		}
 	}
 
 	public void itemStateChanged(Item item) {
-		if (item==commandList) {
+		if (item == commandList) {
 			if (commandList.isSelected(0)) {
 				handleCorrectAnswer();
 			} else if (commandList.isSelected(1)) {
 				handleWrongAnser();
-			} else {
-				controller.changeScreen(new SessionFlipped(controller, commandList.isSelected(2)));
+			} else if (commandList.isSelected(3)) {
+				showAlert();
+			} else if (commandList.isSelected(2)) {
+				// treat this option last as it may be selected all the time
+				controller.changeScreen(new SessionFlipped(controller,
+						commandList.isSelected(2)));
 			}
 			// reset selection
 			commandList.setSelectedIndex(0, false);
 			commandList.setSelectedIndex(1, false);
 			commandList.setSelectedIndex(2, false);
+			commandList.setSelectedIndex(3, false);
 		}
+	}
+
+	private void showAlert() {
+		cancelAlert = new Alert("Cancel?", "Cancel?", null,
+				AlertType.CONFIRMATION);
+		cancelAlert.addCommand(yesCommand);
+		cancelAlert.addCommand(noCommand);
+		cancelAlert.setCommandListener(this);
+		controller.changeScreen(cancelAlert);
 	}
 
 	/**
@@ -147,7 +170,7 @@ public class SessionFlipped extends Screen implements CommandListener,
 		data.addFinishedEntry();
 
 		// show next card if there are cards left
-		if (data.getSessionRemainingCardsCount()>0) {
+		if (data.getSessionRemainingCardsCount() > 0) {
 			controller.changeScreen(new Session(controller));
 			return;
 		}
@@ -159,7 +182,8 @@ public class SessionFlipped extends Screen implements CommandListener,
 		}
 
 		// display working indicator while saving results
-		Gauge gauge = new Gauge(null, false, Gauge.INDEFINITE, Gauge.CONTINUOUS_RUNNING);
+		Gauge gauge = new Gauge(null, false, Gauge.INDEFINITE,
+				Gauge.CONTINUOUS_RUNNING);
 		waitAlert = new Alert("Saving");
 		waitAlert.setString("Saving data, please wait...");
 		waitAlert.setIndicator(gauge);
@@ -174,7 +198,7 @@ public class SessionFlipped extends Screen implements CommandListener,
 	}
 
 	public void threadFinished(Exception exception) {
-		if (exception!=null) {
+		if (exception != null) {
 			showAlert("Error while saving session result.\n\n" + exception);
 			exception.printStackTrace();
 			return;
