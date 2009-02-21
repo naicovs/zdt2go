@@ -57,9 +57,9 @@ public class Settings extends Screen implements CommandListener, ItemStateListen
 		attributeSettings.setSelectedIndex(1, data.getSettingsShowTraditionalCharacters());
 		
 		saveSettings = new ChoiceGroup("Storage:", ChoiceGroup.MULTIPLE);
-		saveSettings.append("Save learning results", null);
-		saveSettings.append("Delete outdated statistics", null);
-		saveSettings.append("Delete saved statistics", null);
+		saveSettings.append("Save results", null);
+		saveSettings.append(">Delete old statistics", null);
+		saveSettings.append(">Delete all statistics", null);
 		saveSettings.setSelectedIndex(0, data.getSettingsSaveUpdatedStatistics());
 		
 		append(attributeSettings);

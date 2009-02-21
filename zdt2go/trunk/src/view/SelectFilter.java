@@ -61,7 +61,7 @@ public class SelectFilter extends Screen implements CommandListener, ItemStateLi
 		super("Filter", controller);
 		
 		menuChoiceGroup = new ChoiceGroup("", ChoiceGroup.MULTIPLE);
-		menuChoiceGroup.append("Start learning...", null);
+		menuChoiceGroup.append(">Start learning", null);
 		menuChoiceGroup.append("Filter vocabulary", null);
 		maximumNumber = new TextField("Total number<=", getMaximumNumber(), 3, TextField.NUMERIC);
 		maximumStreak = new TextField("Streak<=", getMaximumStreak(), 3, TextField.NUMERIC);

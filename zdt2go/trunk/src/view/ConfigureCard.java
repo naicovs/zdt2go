@@ -131,7 +131,7 @@ public class ConfigureCard extends Screen implements CommandListener,
 				// abort if [START] is already being displayed
 				return;
 			}
-			startItemId = cardItems.append("[START]", null);
+			startItemId = cardItems.append(">START", null);
 		} else {
 			if (startItemId<0) {
 				// abort if [START] is not being displayed
