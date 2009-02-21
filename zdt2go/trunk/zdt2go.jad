@@ -3,7 +3,7 @@ MIDlet-1: ZDT²go,/gfx/zdt.png,controller.Main
 MIDlet-Jar-URL: zdt2go.jar
 MIDlet-Icon: /gfx/zdt.png
 MicroEdition-Configuration: CLDC-1.1
-MIDlet-Version: 0.8.0
+MIDlet-Version: 0.8.1
 MIDlet-Info-URL: http://code.google.com/p/zdt2go
 MIDlet-Name: ZDT²go
 MIDlet-Description: A flashcard application to learn Chinese.
