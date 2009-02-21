@@ -54,11 +54,6 @@ public class Session extends Screen implements CommandListener {
 		
 		append(cardContent);
 		
-		cancelAlert = new Alert("Cancel?", "Cancel?", null, AlertType.CONFIRMATION);
-		cancelAlert.addCommand(yesCommand);
-		cancelAlert.addCommand(noCommand);
-		cancelAlert.setCommandListener(this);
-
 		flipCommand = new Command("Flip card", Command.SCREEN, 1);
 		addCommand(flipCommand);
 		addCommand(cancelCommand);
@@ -67,6 +62,14 @@ public class Session extends Screen implements CommandListener {
 		
 		init(loadNext);
 		
+	}
+
+	private void showAlert() {
+		cancelAlert = new Alert("Cancel?", "Cancel?", null, AlertType.CONFIRMATION);
+		cancelAlert.addCommand(yesCommand);
+		cancelAlert.addCommand(noCommand);
+		cancelAlert.setCommandListener(this);
+		controller.changeScreen(cancelAlert);
 	}
 
 	public Session(Controller controller) {
@@ -90,7 +93,7 @@ public class Session extends Screen implements CommandListener {
 			}
 		}
 
-		cardContent.setLabel(showString.toString());
+		cardContent.setText(showString.toString());
 
 	}
 
@@ -100,7 +103,7 @@ public class Session extends Screen implements CommandListener {
 			if (command==flipCommand) {
 				controller.changeScreen(new SessionFlipped(controller));
 			} else if (command==cancelCommand) {
-				controller.changeScreen(cancelAlert);
+				showAlert();
 			}
 		} else if (displayable==cancelAlert) {
 			if (command==yesCommand) {
