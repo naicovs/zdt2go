@@ -6,6 +6,6 @@ MIDlet-Info-URL: http://code.google.com/p/zdt2go
 MIDlet-Jar-URL: zdt2go.jar
 MIDlet-Name: ZDT²go
 MIDlet-Vendor: Achim Weimert (http://code.google.com/p/zdt2go)
-MIDlet-Version: 0.8.0
+MIDlet-Version: 0.8.1
 MicroEdition-Configuration: CLDC-1.1
 MicroEdition-Profile: MIDP-2.0
