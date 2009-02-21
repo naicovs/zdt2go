@@ -1,0 +1,11 @@
+MIDlet-1: ZDT²go,/gfx/zdt.png,controller.Main
+MIDlet-Delete-Confirm: Are you sure you want to delete ZDT²go and all its saved data?
+MIDlet-Description: A flashcard application to learn Chinese.
+MIDlet-Icon: /gfx/zdt.png
+MIDlet-Info-URL: http://code.google.com/p/zdt2go
+MIDlet-Jar-URL: zdt2go.jar
+MIDlet-Name: ZDT²go
+MIDlet-Vendor: Achim Weimert (http://code.google.com/p/zdt2go)
+MIDlet-Version: 0.8.1
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
