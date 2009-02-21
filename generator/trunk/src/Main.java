@@ -20,6 +20,7 @@
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -73,13 +74,22 @@ public class Main {
 			}
 		}
 
-		generator.createJarAndJad();
+		String message = "Done.\n\nCheck the output directory\n"
+			+ outputDirectory + "\n"
+			+ "for the files "+Generator.OUTPUT_JAR_FILE+" and "+Generator.OUTPUT_JAD_FILE+"\n\n"
+			+ "To start studying transfer them to your mobile phone!";
+		try {
+			generator.createJarAndJad();
+		} catch (IOException e) {
+			message = "An IO exception occured, please retry. If the problem persists please file a bug report.\n\n"+e;
+		} catch (RuntimeException e) {
+			message = "A runtime exception occured, please retry. If the problem persists please file a bug report.\n\n"+e;
+		} catch (Exception e) {
+			message = "An exception occured, please retry. If the problem persists please file a bug report.\n\n"+e;
+		}
 		JOptionPane
 				.showMessageDialog(
 						null,
-						"Done.\n\nCheck the output directory\n"
-								+ outputDirectory + "\n"
-								+ "for the files "+Generator.OUTPUT_JAR_FILE+" and "+Generator.OUTPUT_JAD_FILE+"\n\n"
-								+ "To start studying transfer them to your mobile phone!");
+						message);
 	}
 }
