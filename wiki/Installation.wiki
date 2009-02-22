@@ -3,7 +3,7 @@
 
 = Introduction =
 
-<font color="#ff0000">The release version 0.8.0 is for testing only.</font>
+<font color="#ff0000">The release version 0.8.1 is for testing only.</font>
 
 For the installation of ZDT²go you have two choices:
   # If you just want to test its features, then continue with *Quick Start*
