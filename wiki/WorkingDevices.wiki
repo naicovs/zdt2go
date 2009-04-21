@@ -4,7 +4,8 @@
 
 This table lists the devices that have been tested (by users) to run ZDT²go.
 
-|| *Brand* || *Model* || *Status* || *Remark* ||
+|| *Brand* || *Model* || *Status* || *Remarks* ||
+|| !BlackBerry || 8700 || fails || details? ||
 || Nokia || 2610 || works || ||
 || Nokia || 5000 || works || ||
 || Sony Ericsson || K750c || works || ||
