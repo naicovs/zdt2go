@@ -6,6 +6,7 @@ This table lists the devices that have been tested (by users) to run ZDT²go.
 
 || *Brand* || *Model* || *Status* || *Remarks* ||
 || !BlackBerry || 8700 || fails || details? ||
+|| HTC || Dream / G1 || works || ||
 || Nokia || 2610 || works || ||
 || Nokia || 5000 || works || ||
 || Nokia || N72 || works || requires jad and jar file ||
