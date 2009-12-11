@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go;
+package eu.weimert.code.zdt2go;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,8 +34,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.google.code.zdt2go.data.Entry;
+import eu.weimert.code.zdt2go.data.Entry;
 
 public class Session extends Activity {
 	
@@ -43,7 +42,7 @@ public class Session extends Activity {
 	public static final String BUNDLE_COUNT_TRIES = "countTries";
 	private static final String BUNDLE_SHOW_BACK = "showBack";
 	public static final String BUNDLE_SESSION = "session";
-	com.google.code.zdt2go.data.Session session = null;
+	eu.weimert.code.zdt2go.data.Session session = null;
 	
 	private GestureDetector gestureDetector;
 	

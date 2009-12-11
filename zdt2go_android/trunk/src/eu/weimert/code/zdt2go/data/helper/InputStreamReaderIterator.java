@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data.helper;
+package eu.weimert.code.zdt2go.data.helper;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,8 +28,6 @@ import java.util.NoSuchElementException;
 /**
  * The InputStreamReaderIterator class provides functions to read from an
  * InputStreamReader using the iterator interface.
- * 
- * @author Achim Weimert
  * 
  */
 public class InputStreamReaderIterator {

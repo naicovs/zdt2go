@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data.helper;
+package eu.weimert.code.zdt2go.data.helper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,8 +29,6 @@ import java.io.InputStreamReader;
 /**
  * The TextStreamLineParser class provides functions to load and parse a tab separated
  * text file from a stream.
- * 
- * @author Achim Weimert
  * 
  */
 public class TextStreamLineParser {

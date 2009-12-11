@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go;
+package eu.weimert.code.zdt2go;
 
 import java.util.Vector;
 
@@ -37,9 +37,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-
-import com.google.code.zdt2go.data.Category;
-import com.google.code.zdt2go.data.Session;
+import eu.weimert.code.zdt2go.data.Category;
+import eu.weimert.code.zdt2go.data.Session;
 
 public class ConfigureSession extends Activity {
 	
@@ -105,7 +104,7 @@ public class ConfigureSession extends Activity {
 				
 				Session session = new Session(category, frontIndices, backIndices);
 				Intent data = new Intent();
-				data.putExtra(com.google.code.zdt2go.Session.BUNDLE_SESSION, session);
+				data.putExtra(eu.weimert.code.zdt2go.Session.BUNDLE_SESSION, session);
 				setResult(RESULT_OK, data);
 				finish();
 			}
