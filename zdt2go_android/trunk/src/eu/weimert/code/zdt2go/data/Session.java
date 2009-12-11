@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data;
+package eu.weimert.code.zdt2go.data;
 
 import java.util.LinkedList;
 import java.util.Random;

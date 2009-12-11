@@ -19,15 +19,14 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go;
-
-import com.google.code.zdt2go.data.Entry;
+package eu.weimert.code.zdt2go;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import eu.weimert.code.zdt2go.data.Entry;
 
 public class EntryAdapter extends BaseAdapter {
 	

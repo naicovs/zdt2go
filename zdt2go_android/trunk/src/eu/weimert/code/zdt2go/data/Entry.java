@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data;
+package eu.weimert.code.zdt2go.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

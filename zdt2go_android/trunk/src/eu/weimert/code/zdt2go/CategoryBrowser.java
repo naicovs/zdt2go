@@ -19,16 +19,13 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go;
+package eu.weimert.code.zdt2go;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.google.code.zdt2go.data.Category;
-
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -45,6 +42,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import eu.weimert.code.zdt2go.data.Category;
 
 public class CategoryBrowser extends ListActivity {
 	

@@ -19,18 +19,17 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data;
+package eu.weimert.code.zdt2go.data;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
 
-import com.google.code.zdt2go.data.helper.TextStreamLineParser;
-import com.google.code.zdt2go.data.helper.TextStreamLineParser.ParseTextFilesCallback;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+import eu.weimert.code.zdt2go.data.helper.TextStreamLineParser;
+import eu.weimert.code.zdt2go.data.helper.TextStreamLineParser.ParseTextFilesCallback;
 
 public class Category implements Parcelable, ParseTextFilesCallback {
 	

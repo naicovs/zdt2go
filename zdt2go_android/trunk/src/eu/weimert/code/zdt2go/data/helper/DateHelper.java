@@ -19,7 +19,7 @@
  * Contributors:
  *     Achim Weimert - initial API and implementation
  ******************************************************************************/
-package com.google.code.zdt2go.data.helper;
+package eu.weimert.code.zdt2go.data.helper;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -28,8 +28,6 @@ import java.util.TimeZone;
 /**
  * The DateHelper class provides functions to convert a string to a Date.
  * 
- * @author Achim Weimert
- *
  */
 public class DateHelper {
 	
