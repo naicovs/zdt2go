@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_marginBottom="10sp">
+
+	<LinearLayout android:id="@+id/LinearLayoutFront"
+		android:layout_width="fill_parent" android:orientation="vertical"
+		android:layout_height="fill_parent">
+		<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Card: Front side"></TextView>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:layout_marginBottom="10sp">
+			<ListView android:id="@+id/ListViewFront"
+				android:orientation="vertical" android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_gravity="center_vertical"></ListView>
+		</LinearLayout>
+		<ImageButton android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/flip"
+			android:minWidth="80sp" android:scaleType="center" android:id="@+id/ButtonFrontFlip"
+			android:layout_gravity="center_horizontal"></ImageButton>
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/LinearLayoutBack"
+		android:layout_height="fill_parent" android:layout_width="fill_parent"
+		android:orientation="vertical">
+		<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Card: Back side"></TextView>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_marginBottom="10sp">
+			<ListView android:layout_width="fill_parent" android:id="@+id/ListViewBack"
+				android:orientation="vertical" android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical">
+			</ListView>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/LinearLayout02"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:orientation="horizontal">
+			<ImageButton android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:scaleType="center"
+				android:src="@drawable/tick" android:id="@+id/ButtonBackCorrect"
+				android:layout_weight="1" android:layout_marginRight="10sp"
+				android:layout_marginLeft="10sp"></ImageButton>
+			<ImageButton android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:scaleType="center"
+				android:src="@drawable/flip_back" android:id="@+id/ButtonBackFlip"
+				android:layout_weight="1" android:layout_marginLeft="10sp"
+				android:layout_marginRight="10sp"></ImageButton>
+			<ImageButton android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:scaleType="center"
+				android:id="@+id/ButtonBackWrong" android:src="@drawable/cross"
+				android:layout_weight="1" android:layout_marginLeft="10sp"
+				android:layout_marginRight="10sp"></ImageButton>
+		</LinearLayout>
+	</LinearLayout>
+
+</LinearLayout>
