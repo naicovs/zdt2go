@@ -42,6 +42,8 @@ import eu.weimert.code.zdt2go.data.Session;
 
 public class ConfigureSession extends Activity {
 	
+	private static final String BUNDLE_BACK_CHECKED_INDICES = "backCheckedIndices";
+	private static final String BUNDLE_FRONT_CHECKED_INDICES = "frontCheckedIndices";
 	public static final String BUNDLE_CATEGORY = "category";
 	private Category category = null;
 	private Vector<CheckBox> frontCheckboxes;
@@ -70,6 +72,47 @@ public class ConfigureSession extends Activity {
 		Button start = (Button)findViewById(R.id.ButtonStart);
 		start.setOnClickListener(startListener);
 		start.setEnabled(false);
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		if (savedInstanceState.containsKey(BUNDLE_FRONT_CHECKED_INDICES)) {
+			final int[] frontCheckedIndices = savedInstanceState
+					.getIntArray(BUNDLE_FRONT_CHECKED_INDICES);
+			loadCheckedFromIndices(frontCheckedIndices, frontCheckboxes);
+		}
+		if (savedInstanceState.containsKey(BUNDLE_BACK_CHECKED_INDICES)) {
+			final int[] backCheckedIndices = savedInstanceState
+					.getIntArray(BUNDLE_BACK_CHECKED_INDICES);
+			loadCheckedFromIndices(backCheckedIndices, backCheckboxes);
+		}
+	}
+
+	/**
+	 * Loads the indices of checked checkboxes from frontCheckedIndices and sets
+	 * the corresponding checkbox to be checked.
+	 * 
+	 * @param checkedIndices
+	 *            array of the indices of the checked checkboxes
+	 * @param checkBoxes
+	 *            the checkboxes to be set
+	 */
+	private static void loadCheckedFromIndices(final int[] checkedIndices,
+			final Vector<CheckBox> checkBoxes) {
+		for (CheckBox checkBox : checkBoxes) {
+			checkBox.setChecked(false);
+		}
+		for (int i = 0; i < checkedIndices.length; i++) {
+			checkBoxes.get(checkedIndices[i]).setChecked(true);
+		}
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putIntArray(BUNDLE_FRONT_CHECKED_INDICES, getCheckedIndices(frontCheckboxes));
+		outState.putIntArray(BUNDLE_BACK_CHECKED_INDICES, getCheckedIndices(backCheckboxes));
 	}
 	
 	private int getCheckedCount(Vector<CheckBox> checkboxes) {
