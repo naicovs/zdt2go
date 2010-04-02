@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow android:id="@+id/TableRow01" android:layout_width="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content">
+	<TextView android:layout_width="wrap_content" android:id="@+id/TextViewItem"
+		android:text="Language" android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"></TextView>
+	<CheckBox android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginLeft="15sp"
+		android:layout_marginRight="15sp" android:id="@+id/CheckBoxFront"
+		android:layout_gravity="center"></CheckBox>
+	<CheckBox android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginLeft="15sp"
+		android:layout_marginRight="15sp" android:id="@+id/CheckBoxBack"
+		android:layout_gravity="center"></CheckBox>
+</TableRow>

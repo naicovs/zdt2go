@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">ZDT²go</string>
+	<string name="no_categories">Sorry, no categories found.</string>
+	<string name="msg_no_category">Sorry, file does not seem to include a category.
+	</string>
+	<string name="title_current_path">&gt; %1$s</string>
+</resources>
