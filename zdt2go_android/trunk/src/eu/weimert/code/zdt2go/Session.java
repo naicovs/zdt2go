@@ -164,7 +164,8 @@ public class Session extends Activity {
 		back.setVisibility(View.VISIBLE);
 		front.setVisibility(View.GONE);
 
-		String title = String.format("Session: %d/%d", session.getCountTries(), session.getCountCards());
+		String title = String.format("Session: %d/%d (Correct: %d)", session.getCountTries(), 
+				session.getCountCards(), session.getCountCorrectCards());
 		setTitle(title);
 	}
 	

@@ -127,6 +127,10 @@ public class Session implements Parcelable {
 		return cardCount;
 	}
 	
+	public int getCountCorrectCards() {
+		return finishedCards.size();
+	}
+	
 	public boolean isFinished() {
 		if (initialCards.size() > 0) {
 			return false;
