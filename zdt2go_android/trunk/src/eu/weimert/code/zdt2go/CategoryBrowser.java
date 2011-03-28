@@ -34,6 +34,7 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,7 +54,6 @@ public class CategoryBrowser extends ListActivity {
 	
 	private static final int DIALOG_MESSAGE = 0;
 	
-	private static final String PATH_SDCARD = "/sdcard";
 	private static final String PATH_ROOT = "/";
 	
 	private String messageTitle;
@@ -125,14 +125,13 @@ public class CategoryBrowser extends ListActivity {
     }
     
 	private void updateNavigationButtonState() {
-		if (currentDirectory != null
-				&& currentDirectory.getPath().equals(PATH_ROOT)) {
+		if (currentDirectory != null && currentDirectory.getPath().equals(PATH_ROOT)) {
 			((Button) findViewById(R.id.ButtonRoot)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonRoot)).setEnabled(true);
 		}
 		if (currentDirectory != null
-				&& currentDirectory.getPath().equals(PATH_SDCARD)) {
+				&& currentDirectory.equals(Environment.getExternalStorageDirectory())) {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(true);
@@ -213,7 +212,7 @@ public class CategoryBrowser extends ListActivity {
 	}
 	
     private void fillWithCard() {
-		fill(new File(PATH_SDCARD));
+		fill(Environment.getExternalStorageDirectory());
 	}
     
     private void fillWithParent() {
