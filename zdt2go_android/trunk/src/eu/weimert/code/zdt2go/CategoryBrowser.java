@@ -84,11 +84,21 @@ public class CategoryBrowser extends ListActivity {
     }
     
     private void fill(final File parent) {
+		final File[] childs = parent.listFiles();
+		if (childs == null) {
+			Toast.makeText(getApplicationContext(), R.string.msg_error_loading_directory,
+					Toast.LENGTH_LONG).show();
+			final boolean isRootDirectory = parent.equals(new File(PATH_ROOT));
+			if (!isRootDirectory) {
+				fillWithRoot();
+			}
+			return;
+		}
     	currentDirectory = parent;
 		updateNavigationButtonState();
 		items = new ArrayList<String>();
 		List<String> view = new ArrayList<String>();
-		for (File file : parent.listFiles()) {
+		for (File file : childs) {
 			String path = file.getPath();
 			String name = file.getName();
 			boolean isCategoryFile = isCategoryFile(file);
