@@ -1,0 +1,17 @@
+# List of devices #
+
+This table lists the devices that have been tested (by users) to run ZDT²go.
+
+| **Brand** | **Model** | **Status** | **Remarks** |
+|:----------|:----------|:-----------|:------------|
+| BlackBerry | 8700      | fails      | details?    |
+| HTC       | Dream     | works      |             |
+| HTC       | Magic     | works      |             |
+| Nokia     | 2610      | works      |             |
+| Nokia     | 5000      | works      |             |
+| Nokia     | N72       | works      | requires jad and jar file |
+| Sony Ericsson | K750c     | works      |             |
+| T-Mobile  | G1        | works      |             |
+| T-Mobile  | myTouch 3G | works      |             |
+
+Note: This list is based on (anonymous) users reports.

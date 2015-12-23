@@ -1,0 +1,51 @@
+# Introduction #
+
+For the installation of ZDT²go you have two choices:
+  1. If you just want to test its features, then continue with **Quick Start**
+  1. If you want to become a power user and add your own vocabulary files from ZDT check **Power User**
+
+# Requirements #
+To use ZDT²go you need a mobile phone that can run Java applications, in detail it must support the configuration CLDC-1.1 and the profile MIDP-2.0 (most currently used mobile phones do that anyway). Additionally, your phone needs to be able to display Chinese characters or you will be only able to learn Pinyin.
+
+As I cannot test ZDT²go on every available device out there you eventually have to find it out yourself. If your phone runs the application just drop me a note and I will add it to the list of [working devices](WorkingDevices.md). If your phone has problems just [start an issue](http://code.google.com/p/zdt2go/issues/entry) on the [Issues tab](http://code.google.com/p/zdt2go/issues/list) as there is the chance it can be made working for your device, too.
+
+# Details #
+
+## Quick Start ##
+Go to the [download section](http://code.google.com/p/zdt2go/downloads/list) and get the latest zdt2go-X.X.X.zip file. Unzip it and transfer the included zdt2go.jar and zdt2go.jad file to your mobile phone. This release includes two lessons (one beginner, one intermediate) to give you a feeling for the program. For real usage see the **Power User** section.
+
+## Power User ##
+First of all you need to get some vocabulary files. One way is to download them from the [ZDT website](http://zdt.sourceforge.net/) or to export your own categories from ZDT. Start ZDT, go to the **Categories** view and click on the **Export** button at the bottom. Specify the directory, choose the category (it's only possible to export one category at a time) and choose **Export format**: **zdt**. Make sure the option **Export statistics** is checked and click on **Finish**. Repeat these steps for every category you want to learn on your mobile phone.
+
+Now go to the [download section](http://code.google.com/p/zdt2go/downloads/list) and get the latest zdt2go\_generator-X.X.X.jar file. Run this file using a Java Runtime Environment (JRE). If you already have a JRE installed you normally can start the generator by double clicking the downloaded file.
+
+A window will open asking you to select a directory where to save your customized ZDT²go application, for example, you can choose your desktop. To use the selected directory click on **Open**.
+A new file selection dialog will open asking you to select your ZDT vocabulary files. Browse to the directory where you exported your categories to and select the ones you want to include. You can select multiple files by pressing and holding the Ctrl key. To generate your output files click on **Open**.
+
+You should now get a confirmation message stating your output directory contains the zdt2go.jar and zdt2go.jad file. Transfer those files to your mobile phone.
+
+# Transfer to Mobile Phone #
+There a basically three ways for transfering files to your mobile phone. As the details are specific for each phone I will just cover the basics here. Note: Some mobile phones just require the jar file and do not need the jad file.
+
+After the files have been transfered you can install the application by opening one of the files using your mobile phone.
+
+## Using a cable ##
+If you have a (USB or serial) cable, connect your mobile phone to the computer and transfer the files using the available software.
+
+## Using Bluetooth (BT) or Infrared (IR) ##
+If both your mobile phone and your computer support bluetooth or infrared file transfer, select the files and transfer them using the available software.
+
+## Over the air (OTA) ##
+If your mobile phone can access the internet and you have some webspace, upload the files to your webspace and point your mobile phone to the jad file.
+
+# Optionally #
+## Install Java ##
+On Windows you can download and install [Sun's Java Java Runtime Environment](http://java.com/en/download/). On Linux ask your favorite package manager to get it for you. If double clicking does not run the generator, you can open a terminal, browse to the directory where your downloaded the file using
+```
+cd PATH/TO/DIRECTORY
+```
+and execute the application by entering
+```
+java -jar zdt2go_generator-X.X.X.jar
+```
+(of course you need to replace X.X.X by the proper version of the downloaded file).
